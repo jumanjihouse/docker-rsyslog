@@ -1,0 +1,20 @@
+#!/bin/bash
+set -e
+
+. script/functions
+
+echo
+echo "===> Pull latest base image."
+smitty docker pull gliderlabs/alpine:latest
+
+echo
+echo "===> Build a tiny rsyslog image."
+smitty docker build --rm -t rsyslog src/
+
+echo
+echo "===> Show image sizes."
+docker images | egrep 'rsyslog\b'
+
+echo
+echo "WARN: you should docker tag the image"
+echo
