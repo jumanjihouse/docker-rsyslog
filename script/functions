@@ -13,5 +13,5 @@ err() {
 }
 
 logger() {
-  docker run --rm --volumes-from rsyslog gliderlabs/alpine:latest logger $@
+  docker run --name logger --volumes-from rsyslog gliderlabs/alpine:latest logger $@
 }

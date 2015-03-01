@@ -9,21 +9,32 @@ docker images | egrep 'rsyslog\b'
 
 echo
 echo "===> Start a syslog server container."
-docker rm -f rsyslog &> /dev/null || :
+smitty docker rm -f rsyslog || :
 smitty docker run -d -h $(hostname) --name rsyslog -v /tmp/syslogdev:/dev rsyslog
 
 echo
 echo "===> Show rsyslog build options."
-smitty docker run --rm -t rsyslog -v
+smitty docker run -t --name buildopts rsyslog -v
 
 echo
 echo "===> Submit a test log message."
 md5sum=$(date | md5sum | awk '{print $1}')
 type logger
-smitty logger -st jumanjitest $md5sum
+smitty logger -st jumanjitest $md5sum || :
 
 echo
 echo "===> Show server log."
 smitty docker logs rsyslog | tee /tmp/copy-of-logs.out
 echo
 smitty grep $md5sum /tmp/copy-of-logs.out
+
+echo
+echo "===> Remove crufty containers (fails on CircleCI)."
+cids="
+  buildopts
+  logger
+  rsyslog
+"
+for cid in $cids; do
+  docker rm -f $cid &> /dev/null || :
+done

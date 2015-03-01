@@ -6,8 +6,10 @@ machine:
 dependencies:
   override:
     - docker info
-    - script/build
+    - docker images
+    - docker ps
 
 test:
   override:
+    - script/build
     - script/test
