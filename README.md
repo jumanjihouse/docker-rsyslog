@@ -1,6 +1,8 @@
 rsyslog in a container
 ======================
 
+Build status: [![Circle CI](https://circleci.com/gh/jumanjihouse/docker-rsyslog.svg?style=svg&circle-token=89ad04436cc4005742ec011ac6d4048cc2e2034e)](https://circleci.com/gh/jumanjihouse/docker-rsyslog)
+
 Project URL: [https://github.com/jumanjihouse/docker-rsyslog](https://github.com/jumanjihouse/docker-rsyslog)
 
 Registry: [https://registry.hub.docker.com/u/jumanjiman/rsyslog/](https://registry.hub.docker.com/u/jumanjiman/rsyslog/)
