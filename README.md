@@ -45,10 +45,22 @@ The runtime image is published as `jumanjiman/rsyslog`.
 Run a container from the CLI:
 
     docker run -d \
-      --name rsyslog \
+      --name rsyslog.service \
       -h $(hostname) \
       -v /tmp/syslogdev:/log \
       jumanjiman/rsyslog
+
+Run a container that *only* logs to syslog:
+
+    docker run -d \
+      --name tftp \
+      -h tftp.example.com \
+      --volumes-from rsyslog.service \
+      jumanjiman/tftp-hpa
+
+Now you can tail the logs from the tftp container:
+
+    docker logs -f rsyslog.service
 
 
 ### Use systemd for automatic startup
