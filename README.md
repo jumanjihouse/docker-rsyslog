@@ -96,6 +96,12 @@ Contribute
 See [`CONTRIBUTING.md`](CONTRIBUTING.md) in this repo.
 
 
+Other rsyslog images
+--------------------
+
+* https://github.com/helderco/docker-rsyslog
+
+
 License
 -------
 

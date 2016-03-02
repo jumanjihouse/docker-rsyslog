@@ -10,17 +10,17 @@ docker images | egrep 'rsyslog\b'
 echo
 echo "===> Start a syslog server container."
 smitty docker rm -f rsyslog || :
-smitty docker run -d -h $(hostname) --name rsyslog -v /tmp/syslogdev:/dev rsyslog
+smitty docker run -d -h $(hostname) --name rsyslog rsyslog
 
 echo
 echo "===> Show rsyslog build options."
+smitty docker rm -f buildopts || :
 smitty docker run -t --name buildopts rsyslog -v
 
 echo
 echo "===> Submit a test log message."
 md5sum=$(date | md5sum | awk '{print $1}')
-type logger
-smitty logger -st jumanjitest $md5sum || :
+smitty docker run --volumes-from rsyslog alpine:3.3 sh -c "ln -sf /var/run/rsyslog/dev/log /dev/log && logger $md5sum"
 
 echo
 echo "===> Show server log."
