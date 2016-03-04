@@ -19,7 +19,7 @@ The image contains:
 * default, minimal configuration that you can easily override
 
 The runtime image is quite small (roughly 8 MB) since it is based on the
-[gliderlabs/alpine docker image](https://github.com/gliderlabs/docker-alpine),
+[alpine docker image](https://github.com/gliderlabs/docker-alpine),
 which is based on [Alpine Linux](https://www.alpinelinux.org/).
 
 I use this image in combination with
@@ -47,7 +47,6 @@ Run a container from the CLI:
     docker run -d \
       --name rsyslog.service \
       -h $(hostname) \
-      -v /tmp/syslogdev:/log \
       jumanjiman/rsyslog
 
 Run a container that *only* logs to syslog:
