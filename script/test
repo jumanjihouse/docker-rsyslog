@@ -20,7 +20,7 @@ smitty docker run -t --name buildopts rsyslog -v
 echo
 echo "===> Submit a test log message."
 md5sum=$(date | md5sum | awk '{print $1}')
-smitty docker run --volumes-from rsyslog alpine:3.3 sh -c "ln -sf /var/run/rsyslog/dev/log /dev/log && logger $md5sum"
+smitty docker run --volumes-from rsyslog alpine:3.5 sh -c "ln -sf /var/run/rsyslog/dev/log /dev/log && logger $md5sum"
 
 echo
 echo "===> Show server log."
