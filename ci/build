@@ -9,7 +9,7 @@ smitty docker pull alpine:3.5
 
 echo
 echo "===> Build a tiny rsyslog image."
-smitty docker build --rm -t rsyslog src/
+smitty docker-compose build
 
 echo
 echo "===> Show image sizes."

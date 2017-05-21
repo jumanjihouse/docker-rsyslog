@@ -1,0 +1,21 @@
+version: '2.1'
+
+services:
+  rsyslog: &defaults
+    image: rsyslog
+    build:
+      context: src/
+    cap_drop:
+      - all
+    pids_limit: 10
+    cpu_shares: 1023
+    mem_limit: 100m
+    shm_size: 32m
+    stdin_open: true
+    tty: true
+
+  logger:
+    image: alpine:3.5
+    command: sh -c "ln -sf /var/run/rsyslog/dev/log /dev/log && logger md5sum is $$md5sum"
+    volumes_from:
+      - rsyslog
