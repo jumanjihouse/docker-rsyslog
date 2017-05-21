@@ -1,6 +1,6 @@
 #!/bin/sh
 
-repo=${1:-jumanjiman}
-hash=$(git rev-parse --short HEAD)
-docker tag -f rsyslog ${repo}/rsyslog:${hash}
-docker tag -f rsyslog ${repo}/rsyslog:latest
+. ci/vars
+
+docker tag rsyslog jumanjiman/rsyslog:${TAG}
+docker tag rsyslog jumanjiman/rsyslog:latest

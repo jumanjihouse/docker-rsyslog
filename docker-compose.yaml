@@ -5,6 +5,11 @@ services:
     image: rsyslog
     build:
       context: src/
+      args:
+        CI_BUILD_URL: ${CIRCLE_BUILD_URL}
+        BUILD_DATE:   ${BUILD_DATE}
+        VCS_REF:      ${VCS_REF}
+        VERSION:      ${VERSION}
     cap_drop:
       - all
     pids_limit: 10

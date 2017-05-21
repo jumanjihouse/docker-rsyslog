@@ -1,6 +1,20 @@
 #!/bin/bash
 set -e
 
+cat > ci/vars <<EOF
+  VERSION=8.20.0-r1
+  BUILD_DATE=$(date +%Y%m%dT%H%M)
+  VCS_REF=${CIRCLE_SHA1:0:7}
+  TAG=\${VERSION}-\${BUILD_DATE}-git-\${VCS_REF}
+  CI_BUILD_URL=${CIRCLE_BUILD_URL:-unknown}
+
+  export VERSION
+  export BUILD_DATE
+  export VCS_REF
+  export CI_BUILD_URL
+EOF
+
+. ci/vars
 . ci/functions
 
 echo
@@ -14,6 +28,10 @@ smitty docker-compose build
 echo
 echo "===> Show image sizes."
 docker images | egrep 'rsyslog\b'
+
+echo
+echo "===> Show labels."
+docker inspect -f '{{ .Config.Labels }}' rsyslog
 
 echo
 echo "WARN: you should docker tag the image"
