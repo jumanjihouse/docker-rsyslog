@@ -1,0 +1,23 @@
+# https://circleci.com/docs/docker
+version: 2
+jobs:
+  build:
+    docker:
+      - image: jumanjiman/cci:20170430T2312-git-3c95863
+
+    working_directory: ~/workdir/
+
+    steps:
+      - setup_remote_docker
+
+      - checkout
+
+      - run:
+          name: Build the image
+          command: |
+            ci/build
+
+      - run:
+          name: Test the image
+          command: |
+            ci/test
