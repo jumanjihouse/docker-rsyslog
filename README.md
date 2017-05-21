@@ -1,11 +1,15 @@
 rsyslog in a container
 ======================
 
-Build status: [![Circle CI](https://circleci.com/gh/jumanjihouse/docker-rsyslog.svg?style=svg&circle-token=89ad04436cc4005742ec011ac6d4048cc2e2034e)](https://circleci.com/gh/jumanjihouse/docker-rsyslog)
-
 Project URL: [https://github.com/jumanjihouse/docker-rsyslog](https://github.com/jumanjihouse/docker-rsyslog)
-
+<br/>
 Registry: [https://registry.hub.docker.com/u/jumanjiman/rsyslog/](https://registry.hub.docker.com/u/jumanjiman/rsyslog/)
+
+[![Download size](https://images.microbadger.com/badges/image/jumanjiman/rsyslog.svg)](http://microbadger.com/images/jumanjiman/rsyslog "View on microbadger.com")&nbsp;
+[![Version](https://images.microbadger.com/badges/version/jumanjiman/rsyslog.svg)](http://microbadger.com/images/jumanjiman/rsyslog "View on microbadger.com")&nbsp;
+[![Source code](https://images.microbadger.com/badges/commit/jumanjiman/rsyslog.svg)](http://microbadger.com/images/jumanjiman/rsyslog "View on microbadger.com")&nbsp;
+[![Docker Registry](https://img.shields.io/docker/pulls/jumanjiman/rsyslog.svg)](https://registry.hub.docker.com/u/jumanjiman/rsyslog)&nbsp;
+[![Circle CI](https://circleci.com/gh/jumanjihouse/docker-rsyslog.svg?style=svg&circle-token=89ad04436cc4005742ec011ac6d4048cc2e2034e)](https://circleci.com/gh/jumanjihouse/docker-rsyslog)
 
 
 Overview
