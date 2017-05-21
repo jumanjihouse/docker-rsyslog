@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 . ci/vars
 docker login -u ${user} -p ${pass}

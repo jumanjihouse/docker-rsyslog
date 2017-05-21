@@ -26,5 +26,6 @@ jobs:
           name: Deploy from master branch
           command: |
             if [[ ${CIRCLE_BRANCH} = master ]] && [[ -z ${CIRCLE_PR_NUMBER} ]]; then
+              ci/tag
               ci/publish
             fi
