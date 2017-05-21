@@ -11,5 +11,5 @@ dependencies:
 
 test:
   override:
-    - script/build
-    - script/test
+    - ci/build
+    - ci/test

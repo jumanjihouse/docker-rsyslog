@@ -77,8 +77,8 @@ Review and potentially modify the sample systemd unit file at
 
 On a docker host, run:
 
-    script/build
-    script/test
+    ci/build
+    ci/test
 
 
 ### Publish to a private registry
