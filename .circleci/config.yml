@@ -21,3 +21,10 @@ jobs:
           name: Test the image
           command: |
             ci/test
+
+      - deploy:
+          name: Deploy from master branch
+          command: |
+            if [[ ${CIRCLE_BRANCH} = master ]] && [[ -z ${CIRCLE_PR_NUMBER} ]]; then
+              ci/publish
+            fi

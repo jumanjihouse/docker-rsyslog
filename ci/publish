@@ -1,0 +1,9 @@
+#!/bin/bash
+
+. ci/vars
+docker login -u ${user} -p ${pass}
+docker push jumanjiman/rsyslog:${TAG}
+docker push jumanjiman/rsyslog:latest
+docker logout
+
+curl -X POST 'https://hooks.microbadger.com/images/jumanjiman/rsyslog/xavcu9-i4CI3Fwqrg_w2XYRFwxE='
