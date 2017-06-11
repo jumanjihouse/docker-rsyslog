@@ -2,7 +2,7 @@
 set -e
 
 cat > ci/vars <<EOF
-  VERSION=8.20.0-r1
+  VERSION=8.26.0-r0
   BUILD_DATE=$(date +%Y%m%dT%H%M)
   VCS_REF=${CIRCLE_SHA1:0:7}
   TAG=\${VERSION}-\${BUILD_DATE}-git-\${VCS_REF}
@@ -19,7 +19,7 @@ EOF
 
 echo
 echo "===> Pull latest base image."
-smitty docker pull alpine:3.5
+smitty docker pull alpine:3.6
 
 echo
 echo "===> Build a tiny rsyslog image."
