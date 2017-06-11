@@ -1,6 +1,7 @@
 #!/bin/sh
 set -e
 
+. ci/vars
 . ci/functions
 
 echo
@@ -10,6 +11,14 @@ docker images | egrep 'rsyslog\b'
 echo
 echo "===> Start a syslog server container."
 smitty docker-compose up -d rsyslog
+
+echo
+echo "===> Start a tftpd container."
+smitty docker-compose up -d tftpd
+
+echo
+echo "===> Fetch a file from tftpd"
+smitty docker-compose run tftp
 
 echo
 echo "===> Show rsyslog build options."
@@ -25,7 +34,8 @@ echo "===> Show server log."
 smitty docker-compose logs rsyslog | tee /tmp/copy-of-logs.out
 echo
 smitty grep $md5sum /tmp/copy-of-logs.out
+smitty grep 'RRQ from 192.168.254.200' /tmp/copy-of-logs.out
 
 echo
-echo "===> Remove crufty containers (fails on CircleCI)."
+echo "===> Remove crufty containers."
 docker-compose down

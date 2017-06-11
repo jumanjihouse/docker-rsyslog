@@ -1,5 +1,15 @@
 version: '2.1'
 
+networks:
+  testnet:
+    driver: bridge
+    enable_ipv6: false
+    ipam:
+      driver: default
+      config:
+        - subnet: 192.168.254.0/24
+          gateway: 192.168.254.1
+
 services:
   rsyslog: &defaults
     image: rsyslog
@@ -24,3 +34,19 @@ services:
     command: sh -c "ln -sf /var/run/rsyslog/dev/log /dev/log && logger md5sum is $$md5sum"
     volumes_from:
       - rsyslog
+
+  # https://github.com/jumanjihouse/docker-tftp-hpa
+  tftpd:
+    image: jumanjiman/tftp-hpa
+    volumes_from:
+      - rsyslog
+    networks:
+      testnet:
+        ipv4_address: 192.168.254.253
+
+  tftp:
+    image: alpine:3.6
+    command: tftp -gr /pxelinux.cfg/default -l /tmp/default 192.168.254.253
+    networks:
+      testnet:
+        ipv4_address: 192.168.254.200
