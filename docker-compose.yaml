@@ -22,7 +22,9 @@ services:
         VERSION:      ${VERSION}
     cap_drop:
       - all
-    pids_limit: 10
+    cap_add:
+      - net_bind_service
+    pids_limit: 20
     cpu_shares: 1023
     mem_limit: 100m
     shm_size: 32m

@@ -1,0 +1,2 @@
+module(load="imtcp")
+input(type="imtcp" port="514")

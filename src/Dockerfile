@@ -13,6 +13,9 @@ COPY . /
 VOLUME /var/run/rsyslog/dev
 ENTRYPOINT ["rsyslogd", "-n", "-f", "/etc/rsyslogd.conf"]
 
+EXPOSE 514/tcp
+EXPOSE 514/udp
+
 LABEL \
     io.github.jumanjiman.ci-build-url=${CI_BUILD_URL} \
     io.github.jumanjiman.version=${VERSION} \
