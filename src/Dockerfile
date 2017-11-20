@@ -1,8 +1,5 @@
 FROM alpine:3.6
 
-ARG CI_BUILD_URL
-ARG BUILD_DATE
-ARG VCS_REF
 ARG VERSION
 
 RUN apk add --no-cache \
@@ -16,6 +13,10 @@ ENTRYPOINT ["rsyslogd", "-n", "-f", "/etc/rsyslogd.conf"]
 EXPOSE 514/tcp
 EXPOSE 514/udp
 
+# These go last to preserve the build cache.
+ARG CI_BUILD_URL
+ARG BUILD_DATE
+ARG VCS_REF
 LABEL \
     io.github.jumanjiman.ci-build-url=${CI_BUILD_URL} \
     io.github.jumanjiman.version=${VERSION} \
