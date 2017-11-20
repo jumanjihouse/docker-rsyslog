@@ -1,9 +1,18 @@
 #!/bin/bash
 set -e
+set -u
+set -o pipefail
+
+################################################################################
+# Publish image(s) to the docker hub.
+################################################################################
 
 . ci/vars
-docker login -u ${user} -p ${pass}
-docker push jumanjiman/rsyslog:${TAG}
+. ci/functions.sh
+
+# shellcheck disable=SC2154
+docker login -u "${user}" -p "${pass}"
+docker push jumanjiman/rsyslog:"${TAG}"
 docker push jumanjiman/rsyslog:latest
 docker logout
 

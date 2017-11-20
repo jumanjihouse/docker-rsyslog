@@ -1,12 +1,24 @@
-#!/bin/sh
+#!/bin/bash
 set -e
+set -u
+set -o pipefail
+
+################################################################################
+# Run the test harness. Invoke as "ci/test".
+################################################################################
 
 . ci/vars
-. ci/functions
+. ci/functions.sh
+
+echo
+echo Check every file for things like trailing whitespace.
+# Hint: -v1 shows just the names of offending files.
+#       -v2 shows lines with trailing whitespace.
+ci/check-files -v2
 
 echo
 echo "===> Show image sizes."
-docker images | egrep 'rsyslog\b'
+docker images | grep -E 'rsyslog\b'
 
 echo
 echo "===> Start a syslog server container."
@@ -26,16 +38,18 @@ smitty docker-compose exec rsyslog rsyslogd -v
 
 echo
 echo "===> Submit a test log message."
-md5sum=$(date | md5sum | awk '{print $1}')
-smitty docker-compose run --rm -e md5sum=${md5sum} logger
+readonly md5sum="$(date | md5sum | awk '{print $1}')"
+smitty docker-compose run --rm -e md5sum="${md5sum}" logger
 
 echo
 echo "===> Show server log."
 smitty docker-compose logs rsyslog | tee /tmp/copy-of-logs.out
 echo
-smitty grep $md5sum /tmp/copy-of-logs.out
+smitty grep "${md5sum}" /tmp/copy-of-logs.out
 smitty grep 'RRQ from 192.168.254.200' /tmp/copy-of-logs.out
 
 echo
 echo "===> Remove crufty containers."
 docker-compose down
+echo
+echo

@@ -1,6 +1,14 @@
 #!/bin/sh
+set -e
+set -u
+set -o pipefail
+
+################################################################################
+# Tag images.
+################################################################################
 
 . ci/vars
+. ci/functions.sh
 
-docker tag rsyslog jumanjiman/rsyslog:${TAG}
+docker tag rsyslog jumanjiman/rsyslog:"${TAG}"
 docker tag rsyslog jumanjiman/rsyslog:latest
