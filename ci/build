@@ -8,7 +8,7 @@ set -o pipefail
 ################################################################################
 
 cat > ci/vars <<EOF
-declare -rx  VERSION=8.26.0-r0
+declare -rx  VERSION=8.31.0-r0
 declare -rx  BUILD_DATE=$(date +%Y%m%dT%H%M)
 declare -rx  VCS_REF=$(git rev-parse --short HEAD)
 declare -rx  TAG=\${VERSION}-\${BUILD_DATE}-git-\${VCS_REF}
@@ -20,7 +20,7 @@ EOF
 
 echo
 echo "===> Pull latest base image."
-smitty docker pull alpine:3.6
+smitty docker pull alpine:3.7
 
 echo
 echo "===> Build a tiny rsyslog image."

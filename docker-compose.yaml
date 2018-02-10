@@ -32,7 +32,7 @@ services:
     tty: true
 
   logger:
-    image: alpine:3.6
+    image: alpine:3.7
     command: sh -c "ln -sf /var/run/rsyslog/dev/log /dev/log && logger md5sum is $$md5sum"
     volumes_from:
       - rsyslog
@@ -47,7 +47,9 @@ services:
         ipv4_address: 192.168.254.253
 
   tftp:
-    image: alpine:3.6
+    image: alpine:3.7
+    build:
+      context: tftp/
     command: tftp -gr /pxelinux.cfg/default -l /tmp/default 192.168.254.253
     networks:
       testnet:
