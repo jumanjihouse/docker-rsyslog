@@ -1,0 +1,7 @@
+# This file configures yamllint as used by pre-commit.
+extends: default
+
+rules:
+  colons:
+    ignore: |
+      /docker-compose.yaml

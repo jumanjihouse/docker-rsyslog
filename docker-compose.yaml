@@ -1,3 +1,4 @@
+---
 version: '2.1'
 
 networks:
@@ -33,6 +34,7 @@ services:
 
   logger:
     image: alpine:3.7
+    # yamllint disable-line rule:line-length
     command: sh -c "ln -sf /var/run/rsyslog/dev/log /dev/log && logger md5sum is $$md5sum"
     volumes_from:
       - rsyslog

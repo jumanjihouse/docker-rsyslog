@@ -9,12 +9,11 @@ set -o pipefail
 
 . ci/vars
 . ci/functions.sh
+. ci/bootstrap
 
 echo
 echo Check every file for things like trailing whitespace.
-# Hint: -v1 shows just the names of offending files.
-#       -v2 shows lines with trailing whitespace.
-ci/check-files -v2
+pre-commit run --all-files --verbose
 
 echo
 echo "===> Show image sizes."
