@@ -32,6 +32,12 @@ services:
     stdin_open: true
     tty: true
 
+  rsyslog-compile-options:
+    <<: *defaults
+    entrypoint:
+      - rsyslogd
+      - -v
+
   logger:
     image: alpine:3.7
     # yamllint disable-line rule:line-length

@@ -36,7 +36,7 @@ run docker-compose run tftp
 
 echo
 echo "===> Show rsyslog build options."
-run docker-compose exec rsyslog rsyslogd -v
+run docker-compose run --rm rsyslog-compile-options
 
 echo
 echo "===> Submit a test log message."
