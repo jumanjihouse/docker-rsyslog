@@ -13,7 +13,7 @@ set -o pipefail
 
 echo
 echo Check every file for things like trailing whitespace.
-pre-commit run --all-files --verbose
+pre-commit run --all-files --verbose --hook-stage manual
 
 echo
 echo "===> Show image sizes."

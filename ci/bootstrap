@@ -12,6 +12,8 @@ trap finish EXIT
 main() {
   setup_python_path
   install_precommit
+  add_upstream_git_remote
+  fetch_upstream
 }
 
 finish() {
@@ -28,15 +30,30 @@ setup_python_path() {
   PYTHON_PATH="$(python -c "import site; print(site.USER_BASE)")"
   readonly PYTHON_PATH
 
-  if ! grep "${PYTHON_PATH}/bin" <(printenv PATH) &> /dev/null; then
+  if ! grep "${PYTHON_PATH}/bin" <(printenv PATH) &>/dev/null; then
     export PATH="${PATH}:${PYTHON_PATH}/bin"
   fi
 }
 
 install_precommit() {
-  if ! command -v pre-commit &> /dev/null; then
-    pip install --user -Iv --compile --no-cache-dir pre-commit
+  pip install \
+    --compile \
+    --disable-pip-version-check \
+    --no-cache-dir \
+    --quiet \
+    --user \
+    --verbose \
+    -r ci/requirements.txt
+}
+
+add_upstream_git_remote() {
+  if ! git remote show upstream &>/dev/null; then
+    git remote add upstream https://github.com/jumanjihouse/docker-rsyslog.git
   fi
+}
+
+fetch_upstream() {
+  git fetch upstream
 }
 
 main

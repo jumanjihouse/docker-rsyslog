@@ -7,7 +7,7 @@ set -o pipefail
 # Build the docker image(s). Invoke as "ci/build".
 ################################################################################
 
-cat > ci/vars <<EOF
+cat >ci/vars <<EOF
 declare -rx  VERSION=8.31.0-r0
 declare -rx  BUILD_DATE=$(date +%Y%m%dT%H%M)
 declare -rx  VCS_REF=$(git rev-parse --short HEAD)
