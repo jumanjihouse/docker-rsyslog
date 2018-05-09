@@ -20,19 +20,11 @@ EOF
 
 echo
 echo "===> Pull latest base image."
-smitty docker pull alpine:3.7
+run docker pull alpine:3.7
 
 echo
 echo "===> Build a tiny rsyslog image."
-smitty docker-compose build
-
-echo
-echo "===> Show image sizes."
-docker images | grep -E 'rsyslog\b'
-
-echo
-echo "===> Show labels."
-docker inspect -f '{{ .Config.Labels }}' rsyslog
+run docker-compose build
 
 echo
 echo "WARN: you should docker tag the image with \"ci/tag\""

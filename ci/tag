@@ -10,5 +10,5 @@ set -o pipefail
 . ci/vars
 . ci/functions.sh
 
-docker tag rsyslog jumanjiman/rsyslog:"${TAG}"
-docker tag rsyslog jumanjiman/rsyslog:latest
+run docker tag rsyslog jumanjiman/rsyslog:"${TAG}"
+run docker tag rsyslog jumanjiman/rsyslog:latest

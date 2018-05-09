@@ -8,47 +8,50 @@ set -o pipefail
 ################################################################################
 
 . ci/vars
-. ci/functions.sh
 . ci/bootstrap
 
 echo
-echo Check every file for things like trailing whitespace.
-pre-commit run --all-files --verbose --hook-stage manual
+echo '===> Run pre-commit framework.'
+run pre-commit run --all-files --verbose --hook-stage manual
 
 echo
 echo "===> Show image sizes."
-docker images | grep -E 'rsyslog\b'
+run docker images | grep -E 'rsyslog\b'
+
+echo
+echo "===> Show labels."
+run docker inspect -f '{{ .Config.Labels }}' rsyslog | tr ' ' '\n'
 
 echo
 echo "===> Start a syslog server container."
-smitty docker-compose up -d rsyslog
+run docker-compose up -d rsyslog
 
 echo
 echo "===> Start a tftpd container."
-smitty docker-compose up -d tftpd
+run docker-compose up -d tftpd
 
 echo
 echo "===> Fetch a file from tftpd"
-smitty docker-compose run tftp
+run docker-compose run tftp
 
 echo
 echo "===> Show rsyslog build options."
-smitty docker-compose exec rsyslog rsyslogd -v
+run docker-compose exec rsyslog rsyslogd -v
 
 echo
 echo "===> Submit a test log message."
 readonly md5sum="$(date | md5sum | awk '{print $1}')"
-smitty docker-compose run --rm -e md5sum="${md5sum}" logger
+run docker-compose run --rm -e md5sum="${md5sum}" logger
 
 echo
 echo "===> Show server log."
-smitty docker-compose logs rsyslog | tee /tmp/copy-of-logs.out
+run docker-compose logs rsyslog | tee /tmp/copy-of-logs.out
 echo
-smitty grep "${md5sum}" /tmp/copy-of-logs.out
-smitty grep 'RRQ from 192.168.254.200' /tmp/copy-of-logs.out
+run grep "${md5sum}" /tmp/copy-of-logs.out
+run grep 'RRQ from 192.168.254.200' /tmp/copy-of-logs.out
 
 echo
 echo "===> Remove crufty containers."
-docker-compose down
+run docker-compose down
 echo
 echo
