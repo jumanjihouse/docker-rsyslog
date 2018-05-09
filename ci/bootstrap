@@ -34,9 +34,14 @@ setup_python_path() {
 }
 
 install_precommit() {
-  if ! command -v pre-commit &> /dev/null; then
-    pip install --user -Iv --compile --no-cache-dir pre-commit
-  fi
+  pip install \
+    --compile \
+    --disable-pip-version-check \
+    --no-cache-dir \
+    --quiet \
+    --user \
+    --verbose \
+    -r ci/requirements.txt
 }
 
 main
