@@ -4,6 +4,11 @@ ARG VERSION
 
 RUN apk add --no-cache \
       rsyslog=${VERSION} \
+      rsyslog-hiredis \
+      rsyslog-snmp \
+      rsyslog-mysql \
+      rsyslog-pgsql \
+      rsyslog-tls \
       && \
     :
 COPY . /
