@@ -11,6 +11,19 @@ Registry: [https://registry.hub.docker.com/u/jumanjiman/rsyslog/](https://regist
 [![Docker Registry](https://img.shields.io/docker/pulls/jumanjiman/rsyslog.svg)](https://registry.hub.docker.com/u/jumanjiman/rsyslog)&nbsp;
 [![Circle CI](https://circleci.com/gh/jumanjihouse/docker-rsyslog.svg?style=svg&circle-token=89ad04436cc4005742ec011ac6d4048cc2e2034e)](https://circleci.com/gh/jumanjihouse/docker-rsyslog)
 
+**Table of Contents**
+
+- [Overview](#overview)
+- [How-to](#how-to)
+  - [Fetch an already-built image](#fetch-an-already-built-image)
+  - [Run](#run)
+  - [Use systemd for automatic startup](#use-systemd-for-automatic-startup)
+  - [Build](#build)
+  - [Publish to a private registry](#publish-to-a-private-registry)
+- [Contribute](#contribute)
+- [Other rsyslog images](#other-rsyslog-images)
+- [License](#license)
+
 
 Overview
 --------
