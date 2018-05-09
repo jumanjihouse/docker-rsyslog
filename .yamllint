@@ -1,3 +1,4 @@
+---
 # This file configures yamllint as used by pre-commit.
 extends: default
 
