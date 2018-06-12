@@ -9,6 +9,7 @@ RUN apk add --no-cache \
       rsyslog-mysql \
       rsyslog-pgsql \
       rsyslog-tls \
+      logrotate \
       && \
     :
 COPY . /
