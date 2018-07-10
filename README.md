@@ -32,7 +32,8 @@ This source is used to build an image for
 [rsyslog](http://www.rsyslog.com/).
 The image contains:
 
-* [rsyslog-x86_64](http://forum.alpinelinux.org/apk/main/x86_64/rsyslog)
+* [rsyslog-x86_64](https://pkgs.alpinelinux.org/package/edge/main/x86_64/rsyslog)
+* [logrotate-x86_64](https://pkgs.alpinelinux.org/package/edge/main/x86_64/logrotate)
 * default, minimal configuration that you can easily override
 
 The runtime image is quite small (roughly 8 MB) since it is based on the
