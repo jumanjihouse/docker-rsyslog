@@ -1,4 +1,4 @@
-FROM alpine:3.9
+FROM alpine:3.10.1
 
 ARG VERSION
 
@@ -13,7 +13,7 @@ RUN apk add --no-cache \
     :
 COPY . /
 VOLUME /var/run/rsyslog/dev
-ENTRYPOINT ["rsyslogd", "-n", "-f", "/etc/rsyslogd.conf"]
+ENTRYPOINT ["/usr/sbin/entrypoint"]
 
 EXPOSE 514/tcp
 EXPOSE 514/udp
