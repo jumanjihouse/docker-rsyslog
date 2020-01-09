@@ -2,7 +2,8 @@ FROM alpine:3.10.1
 
 ARG VERSION
 
-RUN apk add --no-cache \
+RUN apk upgrade --no-cache && \
+    apk add --no-cache \
       rsyslog=${VERSION} \
       rsyslog-hiredis \
       rsyslog-snmp \
