@@ -8,7 +8,7 @@ set -o pipefail
 ################################################################################
 
 cat >ci/vars <<EOF
-declare -rx  VERSION="8.1904.0-r0"
+declare -rx  VERSION="8.1904.0-r1"
 declare -rx  BUILD_DATE=$(date +%Y%m%dT%H%M)
 declare -rx  VCS_REF=$(git rev-parse --short HEAD)
 declare -rx  TAG=\${VERSION}-\${BUILD_DATE}-git-\${VCS_REF}
