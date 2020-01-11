@@ -11,7 +11,7 @@ set -o pipefail
 
 echo
 echo "===> Build a tiny rsyslog image."
-run docker-compose build
+run docker-compose build rsyslog
 
 echo
 echo "WARN: you should docker tag the image with \"ci/tag\""

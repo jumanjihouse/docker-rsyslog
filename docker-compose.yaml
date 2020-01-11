@@ -12,7 +12,7 @@ networks:
           gateway: 192.168.254.1
 
 services:
-  rsyslog: &defaults
+  rsyslog:
     image: rsyslog
     build:
       context: src/
@@ -28,7 +28,7 @@ services:
     tty: true
 
   rsyslog-compile-options:
-    <<: *defaults
+    image: rsyslog
     entrypoint:
       - rsyslogd
       - -v
