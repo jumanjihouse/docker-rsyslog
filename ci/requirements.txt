@@ -1,1 +1,1 @@
-pre-commit>=1.7.0
+pre-commit==1.21.0
