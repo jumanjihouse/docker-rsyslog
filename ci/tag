@@ -19,3 +19,4 @@ EOF
 . ci/functions.sh
 
 run docker-compose -f docker-compose-metadata.yaml build
+run docker tag rsyslog jumanjiman/rsyslog:latest
