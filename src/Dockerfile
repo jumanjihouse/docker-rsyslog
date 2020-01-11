@@ -1,10 +1,8 @@
 FROM alpine:3.10.1
 
-ARG VERSION
-
 RUN apk upgrade --no-cache && \
     apk add --no-cache \
-      rsyslog=${VERSION} \
+      rsyslog \
       rsyslog-hiredis \
       rsyslog-snmp \
       rsyslog-mysql \
@@ -18,17 +16,3 @@ ENTRYPOINT ["/usr/sbin/entrypoint"]
 
 EXPOSE 514/tcp
 EXPOSE 514/udp
-
-# These go last to preserve the build cache.
-ARG CI_BUILD_URL
-ARG BUILD_DATE
-ARG VCS_REF
-LABEL \
-    io.github.jumanjiman.ci-build-url=${CI_BUILD_URL} \
-    io.github.jumanjiman.version=${VERSION} \
-    io.github.jumanjiman.build-date=${BUILD_DATE} \
-    io.github.jumanjiman.vcs-ref=${VCS_REF} \
-    io.github.jumanjiman.license="MIT" \
-    io.github.jumanjiman.docker.dockerfile="/src/Dockerfile" \
-    io.github.jumanjiman.vcs-type="Git" \
-    io.github.jumanjiman.vcs-url="https://github.com/jumanjihouse/docker-rsyslog.git"

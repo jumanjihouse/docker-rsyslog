@@ -7,7 +7,6 @@ set -o pipefail
 # Run the test harness. Invoke as "ci/test".
 ################################################################################
 
-. ci/vars
 . ci/bootstrap
 
 echo

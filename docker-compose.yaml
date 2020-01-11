@@ -12,15 +12,10 @@ networks:
           gateway: 192.168.254.1
 
 services:
-  rsyslog: &defaults
+  rsyslog:
     image: rsyslog
     build:
       context: src/
-      args:
-        CI_BUILD_URL: ${CIRCLE_BUILD_URL}
-        BUILD_DATE:   ${BUILD_DATE}
-        VCS_REF:      ${VCS_REF}
-        VERSION:      ${VERSION}
     cap_drop:
       - all
     cap_add:
@@ -33,10 +28,18 @@ services:
     tty: true
 
   rsyslog-compile-options:
-    <<: *defaults
+    image: rsyslog
     entrypoint:
       - rsyslogd
       - -v
+
+  rsyslog-version:
+    image: rsyslog
+    entrypoint:
+      - sh
+    command:
+      - -c
+      - "apk policy rsyslog 2>/dev/null | tail -n +2 | head -1 | tr -d ' :'"
 
   logger:
     image: alpine:3.7

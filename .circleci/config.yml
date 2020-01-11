@@ -25,6 +25,11 @@ jobs:
             ci/build
 
       - run:
+          name: Tag the image and add metadata
+          command: |
+            ci/tag
+
+      - run:
           name: Test the image
           command: |
             ci/test
@@ -34,6 +39,5 @@ jobs:
           # yamllint disable rule:line-length
           command: |
             if [[ ${CIRCLE_BRANCH} = master ]] && [[ -z ${CIRCLE_PR_NUMBER} ]]; then
-              ci/tag
               ci/publish
             fi

@@ -40,6 +40,11 @@ add_upstream_git_remote() {
   if ! git remote show upstream &>/dev/null; then
     git remote add upstream https://github.com/jumanjihouse/docker-rsyslog.git
   fi
+
+  # Allow user to easily get pull requests.
+  if ! git config --get remote.upstream.fetch &>/dev/null; then
+    git config --add remote.upstream.fetch +refs/pull/*/head:refs/remotes/upstream/pr/*
+  fi
 }
 
 fetch_upstream() {
