@@ -2,8 +2,8 @@
 version: '2.1'
 
 services:
-  rsyslog-tagged:
-    image: jumanjiman/rsyslog:${VERSION}-${BUILD_DATE}-git-${VCS_REF}
+  rsyslog-tagged: &tagged
+    image: jumanjiman/rsyslog:${TAG}
     build:
       context: src/
       labels:
@@ -15,3 +15,7 @@ services:
         - io.github.jumanjiman.docker.dockerfile=/src/Dockerfile
         - io.github.jumanjiman.vcs-type=Git
         - io.github.jumanjiman.vcs-url=https://github.com/jumanjihouse/docker-rsyslog.git
+
+  rsyslog-latest:
+    <<: *tagged
+    image: jumanjiman/rsyslog
