@@ -95,6 +95,7 @@ Review and potentially modify the sample systemd unit file at
 On a docker host, run:
 
     ci/build
+    ci/tag
     ci/test
 
 

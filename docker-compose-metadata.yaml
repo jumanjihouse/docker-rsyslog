@@ -1,0 +1,17 @@
+---
+version: '2.1'
+
+services:
+  rsyslog-tagged:
+    image: jumanjiman/rsyslog:${VERSION}-${BUILD_DATE}-git-${VCS_REF}
+    build:
+      context: src/
+      labels:
+        - io.github.jumanjiman.version=${VERSION}
+        - io.github.jumanjiman.ci-build-url=${CI_BUILD_URL}
+        - io.github.jumanjiman.build-date=${BUILD_DATE}
+        - io.github.jumanjiman.vcs-ref=${VCS_REF}
+        - io.github.jumanjiman.license=MIT
+        - io.github.jumanjiman.docker.dockerfile=/src/Dockerfile
+        - io.github.jumanjiman.vcs-type=Git
+        - io.github.jumanjiman.vcs-url=https://github.com/jumanjihouse/docker-rsyslog.git
