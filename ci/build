@@ -19,10 +19,6 @@ EOF
 . ci/functions.sh
 
 echo
-echo "===> Pull latest base image."
-run docker pull alpine:3.9
-
-echo
 echo "===> Build a tiny rsyslog image."
 run docker-compose build
 
