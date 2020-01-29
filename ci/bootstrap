@@ -17,7 +17,12 @@ main() {
 }
 
 setup_python_path() {
-  PYTHON_PATH="$(python -c "import site; print(site.USER_BASE)")"
+  if command -v python3 &>/dev/null; then
+    python="python3"
+  else
+    python="python"
+  fi
+  PYTHON_PATH="$(${python} -c "import site; print(site.USER_BASE)")"
   readonly PYTHON_PATH
 
   if ! grep "${PYTHON_PATH}/bin" <(printenv PATH) &>/dev/null; then
@@ -26,7 +31,12 @@ setup_python_path() {
 }
 
 install_precommit() {
-  pip install \
+  if command -v pip3 &>/dev/null; then
+    pip="pip3"
+  else
+    pip="pip"
+  fi
+  "${pip}" install \
     --compile \
     --disable-pip-version-check \
     --no-cache-dir \
