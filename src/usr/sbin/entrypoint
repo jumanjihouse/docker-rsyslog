@@ -1,6 +1,5 @@
 #!/bin/sh
 set -eu
-set -o pipefail
 
 pidfile="/var/run/rsyslogd.pid"
 rm -f "${pidfile}"
