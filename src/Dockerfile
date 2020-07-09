@@ -8,6 +8,7 @@ RUN apk upgrade --no-cache && \
       rsyslog-mysql \
       rsyslog-pgsql \
       rsyslog-tls \
+      rsyslog-elasticsearch \
       && \
     :
 COPY . /
