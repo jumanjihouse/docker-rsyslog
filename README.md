@@ -3,7 +3,7 @@ rsyslog in a container
 
 Project URL: [https://github.com/jumanjihouse/docker-rsyslog](https://github.com/jumanjihouse/docker-rsyslog)
 <br/>
-Registry: [https://registry.hub.docker.com/u/jumanjiman/rsyslog/](https://registry.hub.docker.com/u/jumanjiman/rsyslog/)
+Registry: [https://registry.hub.docker.com/r/jumanjiman/rsyslog/](https://registry.hub.docker.com/u/jumanjiman/rsyslog/)
 
 [![Download size](https://images.microbadger.com/badges/image/jumanjiman/rsyslog.svg)](http://microbadger.com/images/jumanjiman/rsyslog "View on microbadger.com")&nbsp;
 [![Version](https://images.microbadger.com/badges/version/jumanjiman/rsyslog.svg)](http://microbadger.com/images/jumanjiman/rsyslog "View on microbadger.com")&nbsp;
