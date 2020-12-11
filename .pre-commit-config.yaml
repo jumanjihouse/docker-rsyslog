@@ -6,7 +6,7 @@ fail_fast: false
 
 repos:
   - repo: https://github.com/jumanjihouse/pre-commit-hooks
-    rev: 1.7.1
+    rev: 1.11.4
     hooks:
       - id: forbid-binary
       - id: git-check  # Configure in .gitattributes
