@@ -42,7 +42,7 @@ services:
       - "apk policy rsyslog 2>/dev/null | tail -n +2 | head -1 | tr -d ' :'"
 
   logger:
-    image: alpine:3.12
+    image: alpine:3.13
     # yamllint disable-line rule:line-length
     command: sh -c "ln -sf /var/run/rsyslog/dev/log /dev/log && logger md5sum is $$md5sum"
     volumes_from:
